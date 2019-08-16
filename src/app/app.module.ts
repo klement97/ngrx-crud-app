@@ -8,6 +8,7 @@ import {ProductModule} from 'src/app/product/product.module';
 import {RouterModule} from '@angular/router';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from 'src/environments/environment';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,10 +22,11 @@ import {environment} from 'src/environments/environment';
     StoreModule.forRoot({}),
     ProductModule,
     RouterModule,
-     StoreDevtoolsModule.instrument({
+    StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

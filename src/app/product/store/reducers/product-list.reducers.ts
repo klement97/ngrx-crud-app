@@ -1,10 +1,9 @@
-import {ProductModel} from 'src/app/product/models/product.model';
 import {Action, createReducer, on} from '@ngrx/store';
 /**
  * importimi i aksioneve duhet bere me * dhe duhet perdorur nje alias qe te aksesojme
  * cdo gje qe ka ky file actions
  */
-import * as ProductListActions from '../actions/product-list.actions';
+import * as ProductListActions from 'src/app/product/store/actions/product-list.actions';
 
 export const productListFetureKey = 'product-list';
 
@@ -34,8 +33,14 @@ export const initialState: State = {
  */
 const productListReducer = createReducer(
   initialState,
-  on(ProductListActions.addProduct, state => ({...state, productsQuantity: state.productsQuantity + 1})),
-  on(ProductListActions.removeProduct, state => ({...state, productsQuantity: state.productsQuantity - 1}))
+  on(ProductListActions.addProduct, (state, {payload}) => ({
+    ...state,
+    productsQuantity: state.productsQuantity + payload.quantity
+  })),
+  on(ProductListActions.removeProduct, (state, {payload}) => ({
+    ...state,
+    productsQuantity: state.productsQuantity - payload.quantity
+  }))
 );
 
 /**

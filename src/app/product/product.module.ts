@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {StoreModule} from '@ngrx/store';
-import * as productList from './reducers/product-list.reducers';
+import * as productList from './store/reducers/product-list.reducers';
 
 /**
  * Do te ishte e kote qe cdo reducer te paketes product ta importonim ne app.module direkt
