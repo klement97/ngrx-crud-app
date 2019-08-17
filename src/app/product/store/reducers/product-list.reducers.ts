@@ -40,6 +40,10 @@ const productListReducer = createReducer(
   on(ProductListActions.removeProduct, (state, {payload}) => ({
     ...state,
     productsQuantity: state.productsQuantity - payload.quantity
+  })),
+  on(ProductListActions.getQuantitySuccess, (state, {payload}) => ({
+    ...state,
+    productsQuantity: payload.quantity
   }))
 );
 
