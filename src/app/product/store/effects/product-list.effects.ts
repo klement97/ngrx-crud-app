@@ -1,27 +1,27 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
-import * as productList from '../actions/product-list.actions';
-import {catchError, map, mapTo, mergeMap, switchMap} from 'rxjs/operators';
+import * as productListActions from '../actions/product-list.actions';
+import {catchError, map, mapTo, mergeMap, switchMap, tap} from 'rxjs/operators';
 import {ProductListServices} from 'src/app/product/store/services/product-list.services';
-import {EMPTY, Observable, of} from 'rxjs';
+import {EMPTY, Observable, ObservedValueOf, of} from 'rxjs';
 import {Action} from '@ngrx/store';
+import {TypedAction} from '@ngrx/store/src/models';
+import { getQuantity } from '../actions/product-list.actions';
 
 @Injectable()
 export class ProductListEffects {
 
-  // getQuantity$: Observable<Action> = createEffect(() => this.actions$.pipe(
-  //   ofType(productList.getQuantity.type),
-  //   switchMap(() => this.productListService.getQuantity()
-  //     .pipe(
-  //       map(quantity => ({type: productList.getQuantitySuccess, paylaod: quantity})),
-  //       catchError(() => of({type: productList.getQuantityFailure}))
-  //     ))
-  // ));
-
   // @Effect()
-  // public firstAction$: Observable<Action> = this.actions$.pipe(
-  //   ofType(productList.getQuantity.type),
-  //   mapTo(productList.getQuantitySuccess({payload: {quantity: 1}}))
+  // getQuantity$: Observable<Action> = this.actions$.pipe(
+  //   ofType(productListActions.getQuantity),
+  //   switchMap(() => {
+  //     return this.productListService.getQuantity()
+  //       .pipe(
+  //         map((value) => {
+  //           return of(productListActions.getQuantitySuccess({payload: {quantity: value}}));
+  //         })
+  //       );
+  //   })
   // );
 
   constructor(private actions$: Actions, private productListService: ProductListServices) {
