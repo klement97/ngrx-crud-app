@@ -48,7 +48,7 @@ const productListReducer = createReducer(
 );
 
 /**
- * Ky importim eshte i domosdoshem ne menyre te tille qe reducerin te mund
+ * Ky export eshte i domosdoshem ne menyre te tille qe reducerin te mund
  * ta regjistrojme ne app.module
  * @param state: Interface-i State qe kemi shkruajtur me siper
  * @param action: objekti action i tipit Action nga @ngrx/store
