@@ -8,7 +8,7 @@ export class ProductListServices {
   constructor() {
   }
 
-  getQuantity(): Observable<number> {
-    return 2;
-  }
+  // getQuantity(): Observable<number> {
+    // return 2;
+  // }
 }
