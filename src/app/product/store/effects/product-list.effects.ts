@@ -16,7 +16,7 @@ export class ProductListEffects {
     ofType(productListActions.getQuantity),
     map(() => {
       // this.quantity = this.productListService.getQuantity();
-      this.store.dispatch(getQuantitySuccess({payload: {quantity: this.productListService.getQuantity()}}));
+      return this.store.dispatch(getQuantitySuccess({payload: {quantity: this.productListService.getQuantity()}}));
     })
   );
 
