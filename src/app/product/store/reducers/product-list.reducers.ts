@@ -41,6 +41,9 @@ const productListReducer = createReducer(
     ...state,
     productsQuantity: state.productsQuantity - payload.quantity
   })),
+  on(ProductListActions.getQuantity, (state) => ({
+    ...state
+  })),
   on(ProductListActions.getQuantitySuccess, (state, {payload}) => ({
     ...state,
     productsQuantity: payload.quantity

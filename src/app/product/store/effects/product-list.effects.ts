@@ -1,29 +1,32 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
 import * as productListActions from '../actions/product-list.actions';
-import {catchError, map, mapTo, mergeMap, switchMap, tap} from 'rxjs/operators';
+import {getQuantitySuccess} from '../actions/product-list.actions';
+import {map} from 'rxjs/operators';
 import {ProductListServices} from 'src/app/product/store/services/product-list.services';
-import {EMPTY, Observable, ObservedValueOf, of} from 'rxjs';
-import {Action} from '@ngrx/store';
-import {TypedAction} from '@ngrx/store/src/models';
-import { getQuantity } from '../actions/product-list.actions';
+import {Store} from '@ngrx/store';
+import {State} from 'src/app/product/store/reducers/product-list.reducers';
 
 @Injectable()
 export class ProductListEffects {
+  quantity: number;
 
-  // @Effect()
-  // getQuantity$: Observable<Action> = this.actions$.pipe(
-  //   ofType(productListActions.getQuantity),
-  //   switchMap(() => {
-  //     return this.productListService.getQuantity()
-  //       .pipe(
-  //         map((value) => {
-  //           return of(productListActions.getQuantitySuccess({payload: {quantity: value}}));
-  //         })
-  //       );
+  @Effect()
+  getQuantity$ = this.actions$.pipe(
+    ofType(productListActions.getQuantity),
+    map(() => {
+      // this.quantity = this.productListService.getQuantity();
+      this.store.dispatch(getQuantitySuccess({payload: {quantity: this.productListService.getQuantity()}}));
+    })
+  );
+
+  // getQuantityA$ = createEffect(() => this.actions$.pipe(
+  //   ofType(productListActions.getQuantity.type),
+  //   map(() => {
+  //     this.store.dispatch(getQuantitySuccess({payload: {quantity: this.productListService.getQuantity()}}));
   //   })
-  // );
+  // ));
 
-  constructor(private actions$: Actions, private productListService: ProductListServices) {
+  constructor(private actions$: Actions, private productListService: ProductListServices, private store: Store<State>) {
   }
 }
