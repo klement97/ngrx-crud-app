@@ -20,7 +20,7 @@ export const getQuantitySuccess = createAction(
   props<{ quantity: number }>()
 );
 
-export const getQuantityFailre = createAction(
+export const getQuantityFailure = createAction(
   '[Product API] Get Quantity From API Failed',
   props<{ error: Error }>()
 );

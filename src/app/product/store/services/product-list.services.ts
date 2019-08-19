@@ -12,7 +12,7 @@ export class ProductListServices {
   }
 
   getQuantity() {
-    return this.quantity
+    return of(this.quantity)
     ;
   }
 }

@@ -9,6 +9,8 @@ import {RouterModule} from '@angular/router';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from 'src/environments/environment';
 import {FormsModule} from '@angular/forms';
+import {ProductListServices} from 'src/app/product/store/services/product-list.services';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,10 @@ import {FormsModule} from '@angular/forms';
     ProductListComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     // importojme reducer-in e product-list
-    // reduceri importohet si root state kur duhet te jete i arritshem nga cdo pjese e aplikacionit
-    StoreModule.forRoot({}),
+    // reduceri importohet si root state kur duhet te jete i arritshem nga cdo pjese e aplikacionit,
     ProductModule,
     RouterModule,
     StoreDevtoolsModule.instrument({
@@ -28,7 +30,7 @@ import {FormsModule} from '@angular/forms';
     }),
     FormsModule,
   ],
-  providers: [],
+  providers: [ProductListServices],
   bootstrap: [AppComponent]
 })
 export class AppModule {

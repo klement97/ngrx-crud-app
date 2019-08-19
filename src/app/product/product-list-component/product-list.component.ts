@@ -17,17 +17,15 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(getQuantity());
-    this.store.dispatch(getQuantitySuccess({payload: {quantity: 1021}}));
-    console.log(getQuantity.type);
   }
 
   add(value) {
     value = parseInt(value, 10);
-    this.store.dispatch(addProduct({payload: {quantity: value}}));
+    this.store.dispatch(addProduct({quantity: value}));
   }
 
   remove(value) {
     value = parseInt(value, 10);
-    this.store.dispatch(removeProduct({payload: {quantity: value}}));
+    this.store.dispatch(removeProduct({quantity: value}));
   }
 }
