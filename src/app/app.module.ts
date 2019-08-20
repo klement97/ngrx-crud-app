@@ -11,6 +11,7 @@ import {environment} from 'src/environments/environment';
 import {FormsModule} from '@angular/forms';
 import {ProductListServices} from 'src/app/product/store/services/product-list.services';
 import {CommonModule} from '@angular/common';
+import {EffectsModule} from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import {CommonModule} from '@angular/common';
     BrowserModule,
     // importojme reducer-in e product-list
     // reduceri importohet si root state kur duhet te jete i arritshem nga cdo pjese e aplikacionit,
+    StoreModule.forRoot([]),
+    EffectsModule.forRoot([]),
     ProductModule,
     RouterModule,
     StoreDevtoolsModule.instrument({

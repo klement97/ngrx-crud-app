@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {addProduct, getQuantity, getQuantitySuccess, removeProduct} from 'src/app/product/store/actions/product-list.actions';
+import {addProduct, getQuantity, removeProduct} from 'src/app/product/store/actions/product-list.actions';
+import {ProductListState} from 'src/app/product/store/reducers/product-list.reducers';
 
 @Component({
   selector: 'app-product-list',
@@ -12,7 +13,7 @@ export class ProductListComponent implements OnInit {
 
   productQuantity$: Observable<number> = this.store.select(state => state['product-list'].productsQuantity);
 
-  constructor(private store: Store<any>) {
+  constructor(private store: Store<ProductListState>) {
   }
 
   ngOnInit() {

@@ -16,8 +16,7 @@ import {ProductListComponent} from 'src/app/product/product-list-component/produ
     StoreModule.forFeature(productList.productListFetureKey, productList.reducer),
     EffectsModule.forFeature([ProductListEffects]),
   ],
-  exports: [
-  ],
+  exports: [],
   providers: [
     ProductListServices,
   ]
