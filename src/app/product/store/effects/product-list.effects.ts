@@ -14,11 +14,10 @@ export class ProductListEffects {
   loadQuantity$ = createEffect(() =>
     this.actions$.pipe(
       ofType(productListActions.getQuantity),
-      switchMap(() => this.productListService.getQuantity().pipe(
-        map((quantity) => productListActions.getQuantitySuccess({quantity}))
-      )),
-      catchError(error => of(productListActions.getQuantityFailure({error})))
-    ));
+      switchMap(() => this.productListService.getAll().pipe(
+        map((products) => console.log(products))
+      ))
+    ), ({dispatch: false}));
 
   constructor(private actions$: Actions, private productListService: ProductListServices, private store: Store<ProductListState>) {
   }

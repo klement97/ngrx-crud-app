@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {ProductListComponent} from './product/product-list-component/product-list.component';
 import {StoreModule} from '@ngrx/store';
-import {ProductModule} from 'src/app/product/product.module';
+import {entityMetaData, ProductModule} from 'src/app/product/product.module';
 import {RouterModule} from '@angular/router';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from 'src/environments/environment';
@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import {ProductListServices} from 'src/app/product/store/services/product-list.services';
 import {CommonModule} from '@angular/common';
 import {EffectsModule} from '@ngrx/effects';
+import {NgrxDataModule} from 'ngrx-data';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {EffectsModule} from '@ngrx/effects';
     ProductListComponent
   ],
   imports: [
+    NgrxDataModule.forRoot({ entityMetadata: entityMetaData}),
     CommonModule,
     BrowserModule,
     // importojme reducer-in e product-list

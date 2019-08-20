@@ -4,8 +4,11 @@ import * as productList from './store/reducers/product-list.reducers';
 import {EffectsModule} from '@ngrx/effects';
 import {ProductListEffects} from 'src/app/product/store/effects/product-list.effects';
 import {ProductListServices} from 'src/app/product/store/services/product-list.services';
-import {ProductListComponent} from 'src/app/product/product-list-component/product-list.component';
+import {EntityMetadataMap, NgrxDataModule} from 'ngrx-data';
 
+export const entityMetaData: EntityMetadataMap = {
+  Product: {}
+};
 /**
  * Do te ishte e kote qe cdo reducer te paketes product ta importonim ne app.module direkt
  * prandaj cdo reducer importohet te moduli i vet dhe me vone klasa qe eksportohet poshte
