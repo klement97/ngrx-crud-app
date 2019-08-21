@@ -1,9 +1,10 @@
 import {createAction, props} from '@ngrx/store';
 import {Error} from 'tslint/lib/error';
+import {ProductModel} from 'src/app/product/store/models/product.model';
 
 export const addProduct = createAction(
   '[Products] Added Product',
-  props<{ quantity: number }>()
+  props<{ quantity: ProductModel }>()
 );
 
 export const removeProduct = createAction(
