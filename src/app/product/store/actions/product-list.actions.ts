@@ -4,7 +4,7 @@ import {ProductModel} from 'src/app/product/store/models/product.model';
 
 export const addProduct = createAction(
   '[Products] Added Product',
-  props<{ quantity: ProductModel }>()
+  props<{ product: ProductModel }>()
 );
 
 export const removeProduct = createAction(

@@ -16,8 +16,8 @@ export const initialState: State = adapter.getInitialState({});
 const entityTestReducer = createReducer(
   initialState,
 
-  on(productList.addProduct, (state, {quantity}) => {
-    return adapter.addOne(quantity, state);
+  on(productList.addProduct, (state, {product}) => {
+    return adapter.addOne(product, state);
   })
 );
 
