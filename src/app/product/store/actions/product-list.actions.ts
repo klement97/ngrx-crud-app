@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {Error} from 'tslint/lib/error';
+
 
 export const addProduct = createAction(
   '[Products] Added Product',
