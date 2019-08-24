@@ -12,6 +12,8 @@ import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {EffectsModule} from '@ngrx/effects';
 import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import {HttpClientModule} from '@angular/common/http';
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
     FormsModule,
+    BrowserAnimationsModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

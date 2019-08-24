@@ -61,3 +61,19 @@ export function reducer(state: ServiceTypeListState | undefined, action: Action)
 
 // tslint:disable-next-line:max-line-length
 // TODO: Tani pasi e kemi shkruajtur reducer-in eshte e domosdoshme qe kete reducer ta importojme ne modulin korrespondues => service-type.module.ts
+
+
+const {
+  selectEntities,
+  selectAll,
+  selectTotal,
+} = adapter.getSelectors();
+
+// select the dictionary of user entities
+export const selectServiceTypeEntities = selectEntities;
+
+// select the array of users
+export const selectAllServiceTypes = selectAll;
+
+// select the total user count
+export const selectServiceTypeTotal = selectTotal;

@@ -12,7 +12,9 @@ import {ServiceTypeListState} from 'src/app/service-type/store/reducers/service-
 })
 export class ServiceTypeListComponent implements OnInit {
 
+  displayedColumns: string[] = ['name', 'price'];
   serviceTypes$: Observable<ServiceTypeModel[]> = this.store.select(state => state['service-type-list'].entities);
+  dataSource;
 
   constructor(private store: Store<ServiceTypeListState>) {
   }
