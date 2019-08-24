@@ -3,27 +3,29 @@ import {Action, createReducer, on} from '@ngrx/store';
  * importimi i aksioneve duhet bere me * dhe duhet perdorur nje alias qe te aksesojme
  * cdo gje qe ka ky file actions
  */
-import * as ProductListActions from 'src/app/service-type/store/actions/service-type-list.actions';
+import * as ServiceTypeListActions from 'src/app/service-type/store/actions/service-type-list.actions';
+import {createEntityAdapter, EntityState} from '@ngrx/entity';
+import {ServiceTypeModel} from 'src/app/service-type/store/models/service-type.model';
+import {EntityAdapter} from '@ngrx/entity/src/models';
 
-export const productListFetureKey = 'service-type-list';
+export const serviceTypeListFetureKey = 'service-type-list';
 
 /**
  * Ketu behet nje deklarim se State do te jete ne kete tip
  * ne rastin tone State ka vetem nje atribut i cili eshte nje list
  * me objekte te tipit ServiceTypeModel
  */
-export interface ProductListState {
-  productsQuantity: number;
+export interface ServiceTypeListState extends EntityState<ServiceTypeModel> {
 }
+
+export const adapter: EntityAdapter<ServiceTypeModel> = createEntityAdapter<ServiceTypeModel>();
 
 /**
  * Ne kete moment shkruajme nje state fillestar i cili do te jete i vlefshem ne fillim
  * vetem ne ndezje te aplikacionit, perpara se te behet ndonje kerkese nga serveri,
  * dhe normalisht, perpara se te behet nje kerkese presim qe lista e produkteve te jete boshe
  */
-export const initialState: ProductListState = {
-  productsQuantity: 0,
-};
+export const initialState: ServiceTypeListState = adapter.getInitialState({});
 
 
 /**
@@ -31,23 +33,20 @@ export const initialState: ProductListState = {
  * Reducerat jane funksione te thjeshta te cilat vendosin cfare do te ndodhi me state-in ne rast se behet
  * dispatch nje action.
  */
-const productListReducer = createReducer(
+const serviceTypeListReducer = createReducer(
   initialState,
-  on(ProductListActions.addProduct, (state, {quantity}) => ({
-    ...state,
-    productsQuantity: state.productsQuantity + quantity
-  })),
-  on(ProductListActions.removeProduct, (state, {quantity}) => ({
-    ...state,
-    productsQuantity: state.productsQuantity - quantity
-  })),
-  on(ProductListActions.getQuantity, (state) => ({
+  on(ServiceTypeListActions.addServiceType, (state, {serviceType}) => {
+    return adapter.addOne(serviceType, state);
+  }),
+  on(ServiceTypeListActions.removeServiceType, (state, {id}) => {
+    return adapter.removeOne(id, state);
+  }),
+  on(ServiceTypeListActions.getServiceTypes, (state) => ({
     ...state
   })),
-  on(ProductListActions.getQuantitySuccess, (state, {quantity}) => ({
-    ...state,
-    productsQuantity: quantity
-  }))
+  on(ServiceTypeListActions.getServiceTypesSuccess, (state, {serviceTypes}) => {
+    return adapter.addAll(serviceTypes, state);
+  })
 );
 
 /**
@@ -56,8 +55,8 @@ const productListReducer = createReducer(
  * @param state: Interface-i State qe kemi shkruajtur me siper
  * @param action: objekti action i tipit Action nga @ngrx/store
  */
-export function reducer(state: ProductListState | undefined, action: Action) {
-  return productListReducer(state, action);
+export function reducer(state: ServiceTypeListState | undefined, action: Action) {
+  return serviceTypeListReducer(state, action);
 }
 
 // tslint:disable-next-line:max-line-length

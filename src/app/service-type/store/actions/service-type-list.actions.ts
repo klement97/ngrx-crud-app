@@ -9,7 +9,7 @@ export const addServiceType = createAction(
 
 export const removeServiceType = createAction(
   '[ServiceTypes] Removed ServiceType',
-  props<{ serviceType: number }>()
+  props<{ id: number }>()
 );
 
 export const getServiceTypes = createAction(
@@ -18,7 +18,7 @@ export const getServiceTypes = createAction(
 
 export const getServiceTypesSuccess = createAction(
   '[ServiceTypes API] Get ServiceType From API Success',
-  props<{ serviceType: number }>()
+  props<{ serviceTypes: ServiceTypeModel[] }>()
 );
 
 export const getServiceTypesFailure = createAction(
