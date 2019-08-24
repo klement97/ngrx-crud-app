@@ -18,7 +18,7 @@ export const getServiceTypes = createAction(
 
 export const getServiceTypesSuccess = createAction(
   '[ServiceTypes API] Get ServiceType From API Success',
-  props<{ serviceTypes: ServiceTypeModel[] }>()
+  props<{ serviceTypes: any }>()
 );
 
 export const getServiceTypesFailure = createAction(

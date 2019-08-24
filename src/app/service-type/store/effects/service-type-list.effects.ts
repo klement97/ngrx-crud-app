@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import * as productListActions from 'src/app/service-type/store/actions/service-type-list.actions';
+import {getServiceTypes, getServiceTypesSuccess} from 'src/app/service-type/store/actions/service-type-list.actions';
 import {map, switchMap} from 'rxjs/operators';
 import {ServiceTypeServices} from 'src/app/service-type/store/services/service-type.services';
 import {Store} from '@ngrx/store';
@@ -11,11 +11,13 @@ export class ServiceTypeListEffects {
 
   loadQuantity$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(productListActions.getServiceTypes),
+      ofType(getServiceTypes),
       switchMap(() => this.serviceTypeService.getAll().pipe(
-        map((products) => console.log(products))
-      ))
-    ), ({dispatch: false}));
+        map(serviceTypes => getServiceTypesSuccess({serviceTypes}))
+        ) // pipe
+      ) // switchMap
+    ), // pipe
+  ); // effect
 
   constructor(private actions$: Actions, private serviceTypeService: ServiceTypeServices, private store: Store<ServiceTypeListState>) {
   }

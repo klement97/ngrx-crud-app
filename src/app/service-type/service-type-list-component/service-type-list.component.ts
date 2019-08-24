@@ -12,13 +12,16 @@ import {ServiceTypeListState} from 'src/app/service-type/store/reducers/service-
 })
 export class ServiceTypeListComponent implements OnInit {
 
-  productQuantity$: Observable<ServiceTypeModel[]> = this.store.select(state => state['service-type-list'].productsQuantity);
+  serviceTypes$: Observable<ServiceTypeModel[]> = this.store.select(state => state['service-type-list'].entities);
 
   constructor(private store: Store<ServiceTypeListState>) {
   }
 
   ngOnInit() {
     this.store.dispatch(getServiceTypes());
+    this.serviceTypes$.subscribe(
+      data => console.log(data)
+    );
   }
 
   add(serviceType) {

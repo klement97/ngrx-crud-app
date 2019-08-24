@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, of} from 'rxjs';
 import {UserModel} from 'src/app/auth/user.model';
+import {ServiceTypeModel} from 'src/app/service-type/store/models/service-type.model';
 
 const API_HOST_URL = `http://localhost:8000`;
 const API_SERVICE_TYPES_URL = `${API_HOST_URL}/service_types`;
