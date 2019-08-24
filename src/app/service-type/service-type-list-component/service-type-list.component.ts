@@ -6,7 +6,7 @@ import {ServiceTypeModel} from 'src/app/service-type/store/models/service-type.m
 import {ServiceTypeListState} from 'src/app/service-type/store/reducers/service-type-list.reducers';
 
 @Component({
-  selector: 'app-product-list',
+  selector: 'app-service-type-list',
   templateUrl: './service-type-list.component.html',
   styleUrls: ['./service-type-list.component.css']
 })

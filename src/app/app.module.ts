@@ -9,9 +9,9 @@ import {RouterModule} from '@angular/router';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from 'src/environments/environment';
 import {FormsModule} from '@angular/forms';
-import {ServiceTypeServices} from 'src/app/service-type/store/services/service-type.services';
 import {CommonModule} from '@angular/common';
 import {EffectsModule} from '@ngrx/effects';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,11 +19,12 @@ import {EffectsModule} from '@ngrx/effects';
     ServiceTypeListComponent
   ],
   imports: [
+    HttpClientModule,
     CommonModule,
     BrowserModule,
     // importojme reducer-in e service-type-list
     // reduceri importohet si root state kur duhet te jete i arritshem nga cdo pjese e aplikacionit,
-    StoreModule.forRoot([]),
+    StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     ServiceTypeModule,
     RouterModule,
@@ -33,7 +34,7 @@ import {EffectsModule} from '@ngrx/effects';
     }),
     FormsModule,
   ],
-  providers: [ServiceTypeServices],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
