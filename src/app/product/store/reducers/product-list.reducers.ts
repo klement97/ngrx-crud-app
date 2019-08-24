@@ -10,7 +10,7 @@ export const productListFetureKey = 'product-list';
 /**
  * Ketu behet nje deklarim se State do te jete ne kete tip
  * ne rastin tone State ka vetem nje atribut i cili eshte nje list
- * me objekte te tipit ProductModel
+ * me objekte te tipit ServiceTypeModel
  */
 export interface ProductListState {
   productsQuantity: number;

@@ -1,14 +1,14 @@
 import {Action, createReducer, on} from '@ngrx/store';
 import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
-import {ProductModel} from 'src/app/product/store/models/product.model';
+import {ServiceTypeModel} from 'src/app/product/store/models/service-type.model';
 import * as productList from 'src/app/product/store/actions/product-list.actions';
 
 export const entityTestFeatureKey = 'entityTest';
 
-export interface State extends EntityState<ProductModel> {
+export interface State extends EntityState<ServiceTypeModel> {
 }
 
-export const adapter: EntityAdapter<ProductModel> = createEntityAdapter<ProductModel>();
+export const adapter: EntityAdapter<ServiceTypeModel> = createEntityAdapter<ServiceTypeModel>();
 
 
 export const initialState: State = adapter.getInitialState({});
