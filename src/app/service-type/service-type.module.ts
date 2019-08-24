@@ -1,12 +1,10 @@
 import {NgModule} from '@angular/core';
 import {StoreModule} from '@ngrx/store';
 import * as productList from 'src/app/service-type/store/reducers/service-type-list.reducers';
-import * as entityTest from 'src/app/service-type/store/reducers/entity-test.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {ServiceTypeListEffects} from 'src/app/service-type/store/effects/service-type-list.effects';
 import {ServiceTypeServices} from 'src/app/service-type/store/services/service-type.services';
 import {EntityMetadataMap, NgrxDataModule} from 'ngrx-data';
-import {entityTestFeatureKey} from 'src/app/service-type/store/reducers/entity-test.reducer';
 
 export const entityMetaData: EntityMetadataMap = {
   Product: {}
@@ -19,8 +17,7 @@ export const entityMetaData: EntityMetadataMap = {
 @NgModule({
   imports: [
     NgrxDataModule.forRoot({ entityMetadata: entityMetaData}),
-    StoreModule.forFeature(productList.productListFetureKey, productList.reducer),
-    StoreModule.forFeature(entityTestFeatureKey, entityTest.reducer),
+    StoreModule.forFeature(productList.serviceTypeListFetureKey, productList.reducer),
     EffectsModule.forFeature([ServiceTypeListEffects]),
   ],
 
