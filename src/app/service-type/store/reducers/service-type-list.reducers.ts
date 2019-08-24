@@ -3,9 +3,9 @@ import {Action, createReducer, on} from '@ngrx/store';
  * importimi i aksioneve duhet bere me * dhe duhet perdorur nje alias qe te aksesojme
  * cdo gje qe ka ky file actions
  */
-import * as ProductListActions from 'src/app/product/store/actions/product-list.actions';
+import * as ProductListActions from 'src/app/service-type/store/actions/service-type-list.actions';
 
-export const productListFetureKey = 'product-list';
+export const productListFetureKey = 'service-type-list';
 
 /**
  * Ketu behet nje deklarim se State do te jete ne kete tip
@@ -61,4 +61,4 @@ export function reducer(state: ProductListState | undefined, action: Action) {
 }
 
 // tslint:disable-next-line:max-line-length
-// TODO: Tani pasi e kemi shkruajtur reducer-in eshte e domosdoshme qe kete reducer ta importojme ne modulin korrespondues => product.module.ts
+// TODO: Tani pasi e kemi shkruajtur reducer-in eshte e domosdoshme qe kete reducer ta importojme ne modulin korrespondues => service-type.module.ts
