@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {addServiceType, getServiceTypes, removeServiceType} from 'src/app/service-type/store/actions/service-type-list.actions';
 import {ServiceTypeModel} from 'src/app/service-type/store/models/service-type.model';
 import {ServiceTypeListState} from 'src/app/service-type/store/reducers/service-type-list.reducers';
+import {selectAllServiceTypes} from 'src/app/service-type/store';
 
 @Component({
   selector: 'app-service-type-list',
@@ -13,7 +14,7 @@ import {ServiceTypeListState} from 'src/app/service-type/store/reducers/service-
 export class ServiceTypeListComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'price'];
-  serviceTypes$: Observable<ServiceTypeModel[]> = this.store.select(state => state['service-type-list'].entities);
+  serviceTypes$: Observable<ServiceTypeModel[]> = this.store.pipe(select(selectAllServiceTypes));
   dataSource;
 
   constructor(private store: Store<ServiceTypeListState>) {
@@ -22,7 +23,7 @@ export class ServiceTypeListComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(getServiceTypes());
     this.serviceTypes$.subscribe(
-      data => console.log(data)
+      data => this.dataSource = data
     );
   }
 

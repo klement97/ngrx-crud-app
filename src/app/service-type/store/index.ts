@@ -10,7 +10,7 @@ export const reducers: ActionReducerMap<State> = {
   serviceTypes: fromServiceType.reducer,
 };
 
-export const selectServiceTypeState = createFeatureSelector<ServiceTypeListState>('service-types');
+export const selectServiceTypeState = createFeatureSelector<ServiceTypeListState>('service-type-list');
 
 export const selectServiceTypeEntities = createSelector(
   selectServiceTypeState,
