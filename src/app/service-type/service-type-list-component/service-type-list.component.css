@@ -1,0 +1,10 @@
+table {
+    margin-left: 10%;
+    margin-top: 5%;
+    width: 80%;
+    border: 1px solid gray;
+}
+
+.table-buttons {
+    margin-right: 15px;
+}

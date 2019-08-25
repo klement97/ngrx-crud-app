@@ -12,13 +12,15 @@ import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {EffectsModule} from '@ngrx/effects';
 import {HttpClientModule} from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTableModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatDialog, MatDialogModule, MatFormFieldModule, MatTableModule} from '@angular/material';
+import {DialogBoxComponent} from './dialog-boxx/dialog-boxx.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ServiceTypeListComponent
+    ServiceTypeListComponent,
+    DialogBoxComponent,
   ],
   imports: [
     HttpClientModule,
@@ -37,6 +39,12 @@ import {MatTableModule} from '@angular/material';
     FormsModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+  ],
+  entryComponents: [
+    DialogBoxComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,6 +9,7 @@ import {EntityMetadataMap, NgrxDataModule} from 'ngrx-data';
 export const entityMetaData: EntityMetadataMap = {
   Product: {}
 };
+
 /**
  * Do te ishte e kote qe cdo reducer te paketes service-type ta importonim ne app.module direkt
  * prandaj cdo reducer importohet te moduli i vet dhe me vone klasa qe eksportohet poshte
@@ -16,7 +17,7 @@ export const entityMetaData: EntityMetadataMap = {
  */
 @NgModule({
   imports: [
-    NgrxDataModule.forRoot({ entityMetadata: entityMetaData}),
+    NgrxDataModule.forRoot({entityMetadata: entityMetaData}),
     StoreModule.forFeature(productList.serviceTypeListFetureKey, productList.reducer),
     EffectsModule.forFeature([ServiceTypeListEffects]),
   ],
