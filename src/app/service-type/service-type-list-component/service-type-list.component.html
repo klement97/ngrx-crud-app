@@ -17,9 +17,9 @@
     <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let type">
-            <a (click)="openDialog('View',type)">View</a>
-            <a (click)="openDialog('Update',type)">Update</a>
-            <a (click)="openDialog('Delete',type)">Delete</a>
+            <button class="table-buttons" (click)="openDialog('View',type)">View</button>
+            <button class="table-buttons" (click)="openDialog('Update',type)">Update</button>
+            <button class="table-buttons" (click)="openDialog('Delete',type)">Delete</button>
         </td>
     </ng-container>
 
