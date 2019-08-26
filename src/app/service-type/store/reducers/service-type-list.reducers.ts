@@ -7,6 +7,7 @@ import * as ServiceTypeListActions from 'src/app/service-type/store/actions/serv
 import {createEntityAdapter, EntityState} from '@ngrx/entity';
 import {ServiceTypeModel} from 'src/app/service-type/store/models/service-type.model';
 import {EntityAdapter} from '@ngrx/entity/src/models';
+import {Time} from '@angular/common';
 
 export const serviceTypeListFetureKey = 'service-type-list';
 
@@ -16,6 +17,7 @@ export const serviceTypeListFetureKey = 'service-type-list';
  * me objekte te tipit ServiceTypeModel
  */
 export interface ServiceTypeListState extends EntityState<ServiceTypeModel> {
+  loading: boolean;
 }
 
 export const adapter: EntityAdapter<ServiceTypeModel> = createEntityAdapter<ServiceTypeModel>();
@@ -25,7 +27,9 @@ export const adapter: EntityAdapter<ServiceTypeModel> = createEntityAdapter<Serv
  * vetem ne ndezje te aplikacionit, perpara se te behet ndonje kerkese nga serveri,
  * dhe normalisht, perpara se te behet nje kerkese presim qe lista e produkteve te jete boshe
  */
-export const initialState: ServiceTypeListState = adapter.getInitialState({});
+export const initialState: ServiceTypeListState = adapter.getInitialState({
+  loading: true,
+});
 
 
 /**
@@ -41,9 +45,6 @@ const serviceTypeListReducer = createReducer(
   on(ServiceTypeListActions.removeServiceType, (state, {id}) => {
     return adapter.removeOne(id, state);
   }),
-  on(ServiceTypeListActions.getServiceTypes, (state) => ({
-    ...state
-  })),
   on(ServiceTypeListActions.getServiceTypesSuccess, (state, {serviceTypes}) => {
     return adapter.addAll(serviceTypes, state);
   })
