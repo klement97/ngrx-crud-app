@@ -1,37 +1,34 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
 import {addServiceType, getServiceTypes, removeServiceType} from 'src/app/service-type/store/actions/service-type-list.actions';
 import {ServiceTypeModel} from 'src/app/service-type/store/models/service-type.model';
 import {ServiceTypeListState} from 'src/app/service-type/store/reducers/service-type-list.reducers';
 import {MatDialog, MatSort, MatTable, MatTableDataSource} from '@angular/material';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {DialogBoxComponent} from 'src/app/dialog-boxx/dialog-boxx.component';
+import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-service-type-list',
   templateUrl: './service-type-list.component.html',
   styleUrls: ['./service-type-list.component.css'],
-  // animations: [
-  //   trigger('detailExpand', [
-  //     state('collapsed', style({height: '0px', minHeight: '0'})),
-  //     state('expanded', style({height: '*'})),
-  //     transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-  //   ]),
-  // ],
 })
 export class ServiceTypeListComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'price', 'action'];
   serviceTypes$;
+  loading$: false;
   dataSource: MatTableDataSource<ServiceTypeModel>;
   @ViewChild(MatTable, {static: true}) table: MatTable<any>;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private store: Store<ServiceTypeListState>, public dialog: MatDialog) {
-    // tslint:disable-next-line:no-shadowed-variable
     this.serviceTypes$ = store.select(state => state['service-type-list'].serviceTypes);
-    this.serviceTypes$.subscribe(data => this.dataSource = new MatTableDataSource(data));
+    this.serviceTypes$.subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.sort = this.sort;
+    });
+
+    store.select(state => state['service-type-list'].loading).subscribe(loading => this.loading$ = loading);
   }
 
   ngOnInit() {
@@ -51,10 +48,7 @@ export class ServiceTypeListComponent implements OnInit {
   }
 
   openDialog(action, obj) {
-    obj.action = action;
-    const dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '250px',
-      data: obj
-    });
+    const config = {width: '300px', data: {type: action, object: obj}};
+    const dialogRef = this.dialog.open(DialogBoxComponent, config);
   }
 }

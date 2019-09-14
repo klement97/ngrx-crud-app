@@ -20,7 +20,10 @@ export class DialogBoxComponent {
     this.action = this.localData.action;
   }
 
-  doAction() {
+  doAction(type, name?) {
+    if (type === 'Update') {
+      console.log(name);
+    }
     this.dialogRef.close({event: this.action, data: this.localData});
   }
 

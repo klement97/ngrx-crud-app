@@ -7,6 +7,7 @@ import * as ServiceTypeListActions from 'src/app/service-type/store/actions/serv
 import {createEntityAdapter, EntityState} from '@ngrx/entity';
 import {ServiceTypeModel} from 'src/app/service-type/store/models/service-type.model';
 import {EntityAdapter} from '@ngrx/entity/src/models';
+import {getServiceTypes} from 'src/app/service-type/store/actions/service-type-list.actions';
 
 export const serviceTypeListFetureKey = 'service-type-list';
 
@@ -37,6 +38,10 @@ export const initialState: ServiceTypeListState = {
  */
 const serviceTypeListReducer = createReducer(
   initialState,
+  on(getServiceTypes, (state, {}) => ({
+    ...state,
+    loading: true,
+  })),
   on(ServiceTypeListActions.getServiceTypesSuccess, (state, {serviceTypes}) => ({
     ...state,
     loading: false,

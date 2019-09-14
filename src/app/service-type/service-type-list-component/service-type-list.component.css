@@ -1,10 +1,11 @@
-table {
-    margin-left: 10%;
-    margin-top: 5%;
-    width: 80%;
-    border: 1px solid gray;
-}
+/*table {*/
+/*    margin-left: 10%;*/
+/*    margin-top: 5%;*/
+/*    width: 80%;*/
+/*    border: 1px solid gray;*/
+/*}*/
 
-.table-buttons {
-    margin-right: 15px;
+.content {
+    margin: 0 auto;
+    width: 80%;
 }

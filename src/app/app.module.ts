@@ -18,7 +18,7 @@ import {
   MatDialog,
   MatDialogModule,
   MatFormFieldModule,
-  MatIconModule,
+  MatIconModule, MatProgressBarModule,
   MatSortModule,
   MatTableModule
 } from '@angular/material';
@@ -52,6 +52,7 @@ import {DialogBoxComponent} from './dialog-boxx/dialog-boxx.component';
     MatFormFieldModule,
     MatSortModule,
     MatIconModule,
+    MatProgressBarModule,
   ],
   entryComponents: [
     DialogBoxComponent

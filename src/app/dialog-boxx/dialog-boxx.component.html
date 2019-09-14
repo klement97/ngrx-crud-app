@@ -1,14 +1,30 @@
 <!-- dialog-box.component.html -->
-<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
-<div mat-dialog-content>
-    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
-        <input placeholder="{{action}} Name" matInput [(ngModel)]="localData.name">
-    </mat-form-field>
-    <ng-template #elseTemplate>
-        Sure to delete <b>{{localData.name}}</b>?
-    </ng-template>
+<h1 mat-dialog-title>Row Action :: <strong>{{data['type']}}</strong></h1>
+
+<div *ngIf="data['type'] === 'View'">
+    <p>Name: {{data['object'].name}}</p>
+    <div mat-dialog-actions>
+        <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+    </div>
 </div>
-<div mat-dialog-actions>
-    <button mat-button (click)="doAction()">{{action}}</button>
-    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+
+<div *ngIf="data['type'] === 'Update'">
+    <label for="name">name</label>
+    <input type="text" id="name" #name value="{{data['object'].name}}">
+
+    <div mat-dialog-actions>
+        <button mat-button (click)="doAction(data['type'], name.value)">Update</button>
+        <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+    </div>
+
 </div>
+
+<!--<div mat-dialog-content>-->
+<!--    <div *ngIf="action != 'Delete'; else elseTemplate">-->
+<!--        <input #name placeholder="{{action}} Name" matInput [(ngModel)]="localData.name">-->
+<!--    </div>-->
+<!--    <ng-template #elseTemplate>-->
+<!--        Sure to delete <b>{{localData.name}}</b>?-->
+<!--    </ng-template>-->
+<!--</div>-->
+
