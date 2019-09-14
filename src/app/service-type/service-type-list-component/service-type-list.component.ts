@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {addServiceType, getServiceTypes, removeServiceType} from 'src/app/service-type/store/actions/service-type-list.actions';
-import {ServiceTypeModel} from 'src/app/service-type/store/models/service-type.model';
-import {ServiceTypeListState} from 'src/app/service-type/store/reducers/service-type-list.reducers';
+import {addServiceType, getServiceTypeList, removeServiceType} from 'src/app/service-type/actions/service-type-list.actions';
+import {ServiceTypeModel} from 'src/app/service-type/models/service-type.model';
+import {ServiceTypeListState} from 'src/app/service-type/reducers/service-type-list.reducers';
 import {MatDialog, MatSort, MatTable, MatTableDataSource} from '@angular/material';
 import {DialogBoxComponent} from 'src/app/dialog-boxx/dialog-boxx.component';
 import {Observable, of} from 'rxjs';
@@ -35,7 +35,7 @@ export class ServiceTypeListComponent implements OnInit {
   }
 
   get() {
-    this.store.dispatch(getServiceTypes());
+    this.store.dispatch(getServiceTypeList());
   }
 
   add(serviceType) {

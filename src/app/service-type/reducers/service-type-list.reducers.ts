@@ -3,11 +3,11 @@ import {Action, createReducer, on} from '@ngrx/store';
  * importimi i aksioneve duhet bere me * dhe duhet perdorur nje alias qe te aksesojme
  * cdo gje qe ka ky file actions
  */
-import * as ServiceTypeListActions from 'src/app/service-type/store/actions/service-type-list.actions';
+import * as ServiceTypeListActions from 'src/app/service-type/actions/service-type-list.actions';
 import {createEntityAdapter, EntityState} from '@ngrx/entity';
-import {ServiceTypeModel} from 'src/app/service-type/store/models/service-type.model';
+import {ServiceTypeModel} from 'src/app/service-type/models/service-type.model';
 import {EntityAdapter} from '@ngrx/entity/src/models';
-import {getServiceTypes} from 'src/app/service-type/store/actions/service-type-list.actions';
+import {getServiceTypeList} from 'src/app/service-type/actions/service-type-list.actions';
 
 export const serviceTypeListFetureKey = 'service-type-list';
 
@@ -38,11 +38,11 @@ export const initialState: ServiceTypeListState = {
  */
 const serviceTypeListReducer = createReducer(
   initialState,
-  on(getServiceTypes, (state, {}) => ({
+  on(getServiceTypeList, (state, {}) => ({
     ...state,
     loading: true,
   })),
-  on(ServiceTypeListActions.getServiceTypesSuccess, (state, {serviceTypes}) => ({
+  on(ServiceTypeListActions.getServiceTypeListSuccess, (state, {serviceTypes}) => ({
     ...state,
     loading: false,
     serviceTypes,

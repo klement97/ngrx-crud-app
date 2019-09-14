@@ -1,6 +1,6 @@
 import {Component, Inject, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {ServiceTypeModel} from 'src/app/service-type/store/models/service-type.model';
+import {ServiceTypeModel} from 'src/app/service-type/models/service-type.model';
 
 @Component({
   selector: 'app-dialog-boxx',
@@ -20,9 +20,9 @@ export class DialogBoxComponent {
     this.action = this.localData.action;
   }
 
-  doAction(type, name?) {
+  doAction(type, name?, price?) {
     if (type === 'Update') {
-      console.log(name);
+      console.log('Name is: ', name, 'Price is: ', price);
     }
     this.dialogRef.close({event: this.action, data: this.localData});
   }
