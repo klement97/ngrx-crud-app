@@ -7,7 +7,6 @@ import * as ServiceTypeListActions from 'src/app/service-type/store/actions/serv
 import {createEntityAdapter, EntityState} from '@ngrx/entity';
 import {ServiceTypeModel} from 'src/app/service-type/store/models/service-type.model';
 import {EntityAdapter} from '@ngrx/entity/src/models';
-import {Time} from '@angular/common';
 
 export const serviceTypeListFetureKey = 'service-type-list';
 
@@ -16,20 +15,19 @@ export const serviceTypeListFetureKey = 'service-type-list';
  * ne rastin tone State ka vetem nje atribut i cili eshte nje list
  * me objekte te tipit ServiceTypeModel
  */
-export interface ServiceTypeListState extends EntityState<ServiceTypeModel> {
+export interface ServiceTypeListState {
   loading: boolean;
 }
 
-export const adapter: EntityAdapter<ServiceTypeModel> = createEntityAdapter<ServiceTypeModel>();
 
 /**
  * Ne kete moment shkruajme nje state fillestar i cili do te jete i vlefshem ne fillim
  * vetem ne ndezje te aplikacionit, perpara se te behet ndonje kerkese nga serveri,
  * dhe normalisht, perpara se te behet nje kerkese presim qe lista e produkteve te jete boshe
  */
-export const initialState: ServiceTypeListState = adapter.getInitialState({
-  loading: true,
-});
+export const initialState: ServiceTypeListState = {
+  loading: false,
+};
 
 
 /**
@@ -39,15 +37,11 @@ export const initialState: ServiceTypeListState = adapter.getInitialState({
  */
 const serviceTypeListReducer = createReducer(
   initialState,
-  on(ServiceTypeListActions.addServiceType, (state, {serviceType}) => {
-    return adapter.addOne(serviceType, state);
-  }),
-  on(ServiceTypeListActions.removeServiceType, (state, {id}) => {
-    return adapter.removeOne(id, state);
-  }),
-  on(ServiceTypeListActions.getServiceTypesSuccess, (state, {serviceTypes}) => {
-    return adapter.addAll(serviceTypes, state);
-  })
+  on(ServiceTypeListActions.getServiceTypesSuccess, (state, {serviceTypes}) => ({
+    ...state,
+    loading: false,
+    serviceTypes,
+  })),
 );
 
 /**
@@ -62,19 +56,3 @@ export function reducer(state: ServiceTypeListState | undefined, action: Action)
 
 // tslint:disable-next-line:max-line-length
 // TODO: Tani pasi e kemi shkruajtur reducer-in eshte e domosdoshme qe kete reducer ta importojme ne modulin korrespondues => service-type.module.ts
-
-
-const {
-  selectEntities,
-  selectAll,
-  selectTotal,
-} = adapter.getSelectors();
-
-// select the dictionary of user entities
-export const selectServiceTypeEntities = selectEntities;
-
-// select the array of users
-export const selectAllServiceTypes = selectAll;
-
-// select the total user count
-export const selectServiceTypeTotal = selectTotal;

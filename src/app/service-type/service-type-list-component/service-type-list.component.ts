@@ -4,8 +4,7 @@ import {Observable} from 'rxjs';
 import {addServiceType, getServiceTypes, removeServiceType} from 'src/app/service-type/store/actions/service-type-list.actions';
 import {ServiceTypeModel} from 'src/app/service-type/store/models/service-type.model';
 import {ServiceTypeListState} from 'src/app/service-type/store/reducers/service-type-list.reducers';
-import {selectAllServiceTypes} from 'src/app/service-type/store';
-import {MatDialog, MatTable} from '@angular/material';
+import {MatDialog, MatSort, MatTable, MatTableDataSource} from '@angular/material';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {DialogBoxComponent} from 'src/app/dialog-boxx/dialog-boxx.component';
 
@@ -24,18 +23,22 @@ import {DialogBoxComponent} from 'src/app/dialog-boxx/dialog-boxx.component';
 export class ServiceTypeListComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'price', 'action'];
-  serviceTypes$: Observable<ServiceTypeModel[]> = this.store.pipe(select(selectAllServiceTypes));
-  dataSource;
+  serviceTypes$;
+  dataSource: MatTableDataSource<ServiceTypeModel>;
   @ViewChild(MatTable, {static: true}) table: MatTable<any>;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private store: Store<ServiceTypeListState>, public dialog: MatDialog) {
+    // tslint:disable-next-line:no-shadowed-variable
+    this.serviceTypes$ = store.select(state => state['service-type-list'].serviceTypes);
+    this.serviceTypes$.subscribe(data => this.dataSource = new MatTableDataSource(data));
   }
 
   ngOnInit() {
+  }
+
+  get() {
     this.store.dispatch(getServiceTypes());
-    this.serviceTypes$.subscribe(
-      data => this.dataSource = data
-    );
   }
 
   add(serviceType) {
@@ -52,41 +55,6 @@ export class ServiceTypeListComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       width: '250px',
       data: obj
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result.event === 'Add') {
-        this.addRowData(result.data);
-      } else if (result.event === 'Update') {
-        this.updateRowData(result.data);
-      } else if (result.event === 'Delete') {
-        this.deleteRowData(result.data);
-      }
-    });
-  }
-
-  addRowData(rowObj) {
-    const d = new Date();
-    this.dataSource.push({
-      id: d.getTime(),
-      name: rowObj.name
-    });
-    this.table.renderRows();
-
-  }
-
-  updateRowData(rowObj) {
-    this.dataSource = this.dataSource.filter((value, key) => {
-      if (value.id === rowObj.id) {
-        value.name = rowObj.name;
-      }
-      return true;
-    });
-  }
-
-  deleteRowData(rowObj) {
-    this.dataSource = this.dataSource.filter((value, key) => {
-      return value.id !== rowObj.id;
     });
   }
 }

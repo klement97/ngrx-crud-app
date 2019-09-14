@@ -13,7 +13,15 @@ import {CommonModule} from '@angular/common';
 import {EffectsModule} from '@ngrx/effects';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatDialog, MatDialogModule, MatFormFieldModule, MatTableModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatDialog,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatSortModule,
+  MatTableModule
+} from '@angular/material';
 import {DialogBoxComponent} from './dialog-boxx/dialog-boxx.component';
 
 @NgModule({
@@ -42,6 +50,8 @@ import {DialogBoxComponent} from './dialog-boxx/dialog-boxx.component';
     MatButtonModule,
     MatDialogModule,
     MatFormFieldModule,
+    MatSortModule,
+    MatIconModule,
   ],
   entryComponents: [
     DialogBoxComponent
