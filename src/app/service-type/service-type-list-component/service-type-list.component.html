@@ -18,9 +18,6 @@
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let type">
-                <button mat-icon-button (click)="openDialog('View',type)">
-                    <mat-icon>details</mat-icon>
-                </button>
                 <button mat-icon-button (click)="openDialog('Update',type)">
                     <mat-icon>edit</mat-icon>
                 </button>
@@ -37,4 +34,7 @@
         LOADING
     </div>
     <button (click)="get()">Get Service Types</button>
+    <button (click)="openDialog('Add')">
+        Add New Service Type
+    </button>
 </div>

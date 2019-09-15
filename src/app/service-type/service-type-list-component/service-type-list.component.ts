@@ -1,11 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {addServiceType, getServiceTypeList, removeServiceType} from 'src/app/service-type/actions/service-type-list.actions';
+import {addServiceType, getServiceTypeList, deleteServiceType} from 'src/app/service-type/actions/service-type-list.actions';
 import {ServiceTypeModel} from 'src/app/service-type/models/service-type.model';
 import {ServiceTypeListState} from 'src/app/service-type/reducers/service-type-list.reducers';
 import {MatDialog, MatSort, MatTable, MatTableDataSource} from '@angular/material';
 import {DialogBoxComponent} from 'src/app/dialog-boxx/dialog-boxx.component';
-import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-service-type-list',
@@ -22,16 +21,17 @@ export class ServiceTypeListComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(private store: Store<ServiceTypeListState>, public dialog: MatDialog) {
-    this.serviceTypes$ = store.select(state => state['service-type-list'].serviceTypes);
+  }
+
+  ngOnInit() {
+    this.serviceTypes$ = this.store.select(state => state['service-type-list'].serviceTypes);
+
     this.serviceTypes$.subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
     });
 
-    store.select(state => state['service-type-list'].loading).subscribe(loading => this.loading$ = loading);
-  }
-
-  ngOnInit() {
+    this.store.select(state => state['service-type-list'].loading).subscribe(loading => this.loading$ = loading);
   }
 
   get() {
@@ -44,10 +44,10 @@ export class ServiceTypeListComponent implements OnInit {
   }
 
   remove(id) {
-    this.store.dispatch(removeServiceType({id}));
+    this.store.dispatch(deleteServiceType({id}));
   }
 
-  openDialog(action, obj) {
+  openDialog(action, obj?) {
     const config = {width: '300px', data: {type: action, object: obj}};
     const dialogRef = this.dialog.open(DialogBoxComponent, config);
   }

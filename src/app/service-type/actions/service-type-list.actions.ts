@@ -42,17 +42,17 @@ export const updateServiceTypeFailed = createAction(
   props<{ error }>()
 );
 
-export const removeServiceType = createAction(
+export const deleteServiceType = createAction(
   '[Service Types List Page] Remove Service Type',
   props<{ id }>()
 );
 
-export const removeServiceTypeSuccess = createAction(
+export const deleteServiceTypeSuccess = createAction(
   '[Service Types List Page] Remove Service Type',
   props<{ id }>()
 );
 
-export const removeServiceTypeFailed = createAction(
+export const deleteServiceTypeFailed = createAction(
   '[Service Types List Page] Remove Service Type',
   props<{ error }>()
 );

@@ -1,6 +1,9 @@
 import {Component, Inject, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {ServiceTypeModel} from 'src/app/service-type/models/service-type.model';
+import {Store} from '@ngrx/store';
+import {ServiceTypeListState} from 'src/app/service-type/reducers/service-type-list.reducers';
+import {addServiceType, deleteServiceType, updateServiceType} from 'src/app/service-type/actions/service-type-list.actions';
 
 @Component({
   selector: 'app-dialog-boxx',
@@ -12,19 +15,34 @@ export class DialogBoxComponent {
   localData: any;
 
   constructor(
+    private store: Store<ServiceTypeListState>,
     public dialogRef: MatDialogRef<DialogBoxComponent>,
     // @Optional() is used to prevent error if no data is passed
     @Optional() @Inject(MAT_DIALOG_DATA) public data: ServiceTypeModel) {
-    console.log(data);
     this.localData = {...data};
     this.action = this.localData.action;
   }
 
   doAction(type, name?, price?) {
     if (type === 'Update') {
-      console.log('Name is: ', name, 'Price is: ', price);
+      const serviceType = new ServiceTypeModel();
+      serviceType.id = this.localData['object'].id;
+      serviceType.name = name;
+      serviceType.price = price;
+
+      this.store.dispatch(updateServiceType({serviceType}));
+    } else if (type === 'Add') {
+      const serviceType = new ServiceTypeModel();
+      serviceType.name = name;
+      serviceType.price = price;
+
+      this.store.dispatch(addServiceType({serviceType}));
+    } else if (type === 'Delete') {
+      const id = this.data['object'].id;
+
+      this.store.dispatch(deleteServiceType({id}));
     }
-    this.dialogRef.close({event: this.action, data: this.localData});
+    this.closeDialog();
   }
 
   closeDialog() {
