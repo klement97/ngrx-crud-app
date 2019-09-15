@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {
-  addServiceType, addServiceTypeFailed, addServiceTypeSuccess,
+  addServiceType,
+  addServiceTypeFailed,
+  addServiceTypeSuccess,
   deleteServiceType,
   deleteServiceTypeFailed,
   deleteServiceTypeSuccess,
-  getServiceTypeList, getServiceTypeListFailed,
+  getServiceTypeList,
+  getServiceTypeListFailed,
   getServiceTypeListSuccess,
   updateServiceType,
   updateServiceTypeFailed,
@@ -18,13 +21,12 @@ import {of} from 'rxjs';
 @Injectable()
 export class ServiceTypeListEffects {
 
-  getServiceTypeList$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(getServiceTypeList),
-      switchMap(() => this.serviceTypeService.getAll().pipe(
-        map(serviceTypes => getServiceTypeListSuccess({serviceTypes})),
-        catchError(error => of(getServiceTypeListFailed({error})))
-      ))));
+  getServiceTypeList$ = createEffect(() => this.actions$.pipe(
+    ofType(getServiceTypeList),
+    switchMap(() => this.serviceTypeService.getAll().pipe(
+      map(serviceTypes => getServiceTypeListSuccess({serviceTypes})),
+      catchError(error => of(getServiceTypeListFailed({error})))
+    ))));
 
   addServiceType$ = createEffect(() => this.actions$.pipe(
     ofType(addServiceType),
@@ -34,12 +36,14 @@ export class ServiceTypeListEffects {
     )),
   ));
 
-  removeServiceType$ = createEffect(() => this.actions$.pipe(
+  deleteServiceType$ = createEffect(() => this.actions$.pipe(
     ofType(deleteServiceType),
     switchMap(payload => this.serviceTypeService.delete(payload.id).pipe(
-      map(response => deleteServiceTypeSuccess({id: payload.id})),
-      catchError(error => of(deleteServiceTypeFailed({error})))
+      map(response => {
+        return deleteServiceTypeSuccess({id: payload.id});
+      }),
     )),
+    catchError(error => of(deleteServiceTypeFailed({error})))
   ));
 
   updateServiceType$ = createEffect(() => this.actions$.pipe(

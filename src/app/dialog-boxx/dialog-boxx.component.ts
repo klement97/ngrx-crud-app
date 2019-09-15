@@ -6,9 +6,9 @@ import {ServiceTypeListState} from 'src/app/service-type/reducers/service-type-l
 import {addServiceType, deleteServiceType, updateServiceType} from 'src/app/service-type/actions/service-type-list.actions';
 
 @Component({
-  selector: 'app-dialog-boxx',
-  templateUrl: './dialog-boxx.component.html',
-  styleUrls: ['./dialog-boxx.component.css']
+  selector: 'app-dialog-box',
+  templateUrl: './dialog-box.component.html',
+  styleUrls: ['./dialog-box.component.css']
 })
 export class DialogBoxComponent {
   action: string;
@@ -35,14 +35,16 @@ export class DialogBoxComponent {
       const serviceType = new ServiceTypeModel();
       serviceType.name = name;
       serviceType.price = price;
-
+      console.log('Entered Add');
       this.store.dispatch(addServiceType({serviceType}));
+
     } else if (type === 'Delete') {
       const id = this.data['object'].id;
-
+      console.log('Entered Delete Case');
       this.store.dispatch(deleteServiceType({id}));
+      console.log('Dispatched Delete Action');
     }
-    this.closeDialog();
+    return this.closeDialog();
   }
 
   closeDialog() {

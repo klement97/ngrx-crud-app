@@ -1,9 +1,27 @@
-/*table {*/
-/*    margin-left: 10%;*/
-/*    margin-top: 5%;*/
-/*    width: 80%;*/
-/*    border: 1px solid gray;*/
-/*}*/
+.buttons-div {
+    margin-left: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 80%;
+    height: 70px;
+}
+
+.buttons {
+    margin-top: 5%;
+    margin-left: 25%;
+}
+
+.form-field {
+    margin: 5%;
+    width: 100%;
+}
+
+.form {
+    min-width: 100px;
+    max-width: 300px;
+    width: 100%;
+    margin: 30%;
+}
 
 .content {
     margin: 0 auto;

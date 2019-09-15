@@ -13,14 +13,21 @@ export function updateOne(array, element) {
   return newArray;
 }
 
-
 export function addOne(array, element) {
+  /*
+  Takes in an array and an element to be added.
+  Returns a copy of array with element added in it.
+   */
   const newArray = Array.from(array);
   newArray.push(element);
   return newArray;
 }
 
 export function deleteOne(array, id) {
+  /*
+  Takes in an array and id of element to be deleted.
+  Deletes element from copy array if an element exists with given id and returns copy array.
+   */
   const indexOfElement = array.findIndex(element => element.id === id);
   const newArray = Array.from(array);
   if (indexOfElement > -1) {
