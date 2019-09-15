@@ -1,0 +1,53 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title><strong>{{data['type']}} Service Type</strong></h1>
+
+<!-- Add New Service Type Dialog -->
+<div *ngIf="data['type'] === 'Add'">
+
+    <form class="form">
+        <mat-form-field class="form-field">
+            <input matInput placeholder="Name" #name value="">
+        </mat-form-field>
+        <br/>
+        <mat-form-field class="form-field">
+            <input matInput placeholder="Price" #price value="">
+        </mat-form-field>
+    </form>
+
+    <div mat-dialog-actions>
+        <button mat-button (click)="doAction(data['type'], name.value, price.value)" mat-flat-button color="primary">Add</button>
+        <button mat-button (click)="closeDialog()" mat-flat-button>Cancel</button>
+    </div>
+</div>
+
+
+<!-- Update Service Type Dialog -->
+<div *ngIf="data['type'] === 'Update'">
+
+    <form class="form">
+        <mat-form-field class="form-field">
+            <input matInput placeholder="Name" #name value="{{data['object'].name}}">
+        </mat-form-field>
+        <br/>
+        <mat-form-field class="form-field">
+            <input matInput placeholder="Price" #price value="{{data['object'].price}}">
+        </mat-form-field>
+    </form>
+
+    <div mat-dialog-actions>
+        <button mat-button (click)="doAction(data['type'], name['value'], price['value'])" mat-flat-button color="primary">Update</button>
+        <button mat-button (click)="closeDialog()">Cancel</button>
+    </div>
+</div>
+
+
+<!-- Delete Service Type Dialog -->
+<div *ngIf="data['type'] == 'Delete'">
+    <p>Are you sure you want to delete this service type?</p>
+    <p>{{data['object'].name}} -- {{data['object'].price}}£</p>
+
+    <div mat-dialog-actions>
+        <button mat-button (click)="doAction(data['type'])" mat-flat-button color="warn">Delete</button>
+        <button mat-button (click)="closeDialog()">Cancel</button>
+    </div>
+</div>
