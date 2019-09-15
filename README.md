@@ -6,6 +6,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Backend API
+Backend was built on Django Rest Framework. It is also avaliable in my profile.
+Checkout the DRF docs to learn how to run the server in order to be able to perform all CRUD operations successfully with a real REST API.
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
