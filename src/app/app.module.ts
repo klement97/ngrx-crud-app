@@ -15,12 +15,15 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
-  MatDialog,
   MatDialogModule,
   MatFormFieldModule,
-  MatIconModule, MatInputModule, MatProgressBarModule,
+  MatIconModule,
+  MatInputModule,
+  MatProgressBarModule,
+  MatSnackBarContainer,
   MatSortModule,
-  MatTableModule, MatTooltipModule
+  MatTableModule,
+  MatTooltipModule
 } from '@angular/material';
 import {DialogBoxComponent} from './dialog-boxx/dialog-boxx.component';
 
@@ -34,8 +37,6 @@ import {DialogBoxComponent} from './dialog-boxx/dialog-boxx.component';
     HttpClientModule,
     CommonModule,
     BrowserModule,
-    // importojme reducer-in e service-type-list
-    // reduceri importohet si root state kur duhet te jete i arritshem nga cdo pjese e aplikacionit,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     ServiceTypeModule,

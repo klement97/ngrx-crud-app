@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {UserModel} from 'src/app/auth/user.model';
 import {environment} from 'src/environments/environment';
+import {ServiceTypeModel} from 'src/app/service-type/models/service-type.model';
 
 const HOST = environment.API_HOST_URL;
 const API_SERVICE_TYPES_URL = `${HOST}/service_types`;
