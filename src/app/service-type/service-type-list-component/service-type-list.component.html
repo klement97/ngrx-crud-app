@@ -4,8 +4,8 @@
 </div>
 
 <div class="content">
-    <mat-progress-bar *ngIf="loading$" mode="indeterminate"></mat-progress-bar>
-    <table width="100%" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <mat-progress-bar *ngIf="loading$ | async" mode="indeterminate"></mat-progress-bar>
+    <table width="100%" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z3">
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">

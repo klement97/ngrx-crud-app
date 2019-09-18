@@ -4,11 +4,8 @@ import * as productList from 'src/app/service-type/reducers/service-type-list.re
 import {EffectsModule} from '@ngrx/effects';
 import {ServiceTypeListEffects} from 'src/app/service-type/effects/service-type-list.effects';
 import {ServiceTypeServices} from 'src/app/service-type/services/service-type.services';
-import {EntityMetadataMap, NgrxDataModule} from 'ngrx-data';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material';
 
-export const entityMetaData: EntityMetadataMap = {
-  Product: {}
-};
 
 /**
  * Do te ishte e kote qe cdo reducer te paketes service-type ta importonim ne app.module direkt
@@ -17,15 +14,15 @@ export const entityMetaData: EntityMetadataMap = {
  */
 @NgModule({
   imports: [
-    NgrxDataModule.forRoot({entityMetadata: entityMetaData}),
+    MatSnackBarModule,
     StoreModule.forFeature(productList.serviceTypeListFetureKey, productList.reducer),
     EffectsModule.forFeature([ServiceTypeListEffects]),
   ],
 
   exports: [],
   providers: [
-    ServiceTypeServices,
-  ]
+    ServiceTypeServices, MatSnackBar
+  ],
 })
 
 export class ServiceTypeModule {
