@@ -35,14 +35,11 @@ export class DialogBoxComponent {
       const serviceType = new ServiceTypeModel();
       serviceType.name = name;
       serviceType.price = price;
-      console.log('Entered Add');
       this.store.dispatch(addServiceType({serviceType}));
 
     } else if (type === 'Delete') {
       const id = this.data['object'].id;
-      console.log('Entered Delete Case');
       this.store.dispatch(deleteServiceType({id}));
-      console.log('Dispatched Delete Action');
     }
     return this.closeDialog();
   }
