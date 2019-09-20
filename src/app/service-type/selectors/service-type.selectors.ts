@@ -5,7 +5,7 @@ export const selectInitialState = createFeatureSelector<ServiceTypeListState>(se
 
 export const serviceTypeList = createSelector(
   selectInitialState,
-  state => state.serviceTypes
+  state => state.entities
 );
 
 export const serviceTypeListLoading = createSelector(

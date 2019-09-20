@@ -18,6 +18,7 @@ export class ServiceTypeListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'price', 'action'];
   serviceTypes$;
   loading$: Observable<boolean> = this.store.select(serviceTypeListLoading);
+  loading = false;
   dataSource: MatTableDataSource<ServiceTypeModel>;
   @ViewChild(MatTable, {static: true}) table: MatTable<any>;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -30,8 +31,15 @@ export class ServiceTypeListComponent implements OnInit {
     this.serviceTypes$ = this.store.select(serviceTypeList);
 
     this.serviceTypes$.subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.sort = this.sort;
+      if (data === {}) {
+        this.loading = true;
+      } else {
+        this.loading = false;
+        // this.dataSource = new MatTableDataSource<ServiceTypeModel>(data);
+        // this.table.renderRows();
+        // this.dataSource.sort = this.sort;
+        console.log(data);
+      }
     });
   }
 

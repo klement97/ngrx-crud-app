@@ -18,7 +18,7 @@ import {
   MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule,
+  MatInputModule, MatPaginatorModule,
   MatProgressBarModule,
   MatSnackBarContainer,
   MatSortModule,
@@ -56,6 +56,7 @@ import {DialogBoxComponent} from './dialog-boxx/dialog-boxx.component';
     MatProgressBarModule,
     MatTooltipModule,
     MatInputModule,
+    MatPaginatorModule,
   ],
   entryComponents: [
     DialogBoxComponent

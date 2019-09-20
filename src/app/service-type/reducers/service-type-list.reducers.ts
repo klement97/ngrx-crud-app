@@ -9,18 +9,19 @@ import {
 } from 'src/app/service-type/actions/service-type-list.actions';
 import {ServiceTypeModel} from 'src/app/service-type/models/service-type.model';
 import {addOne, deleteOne, updateOne} from 'src/environments/const';
+import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
 
 export const serviceTypeListFetureKey = 'service-type-list';
 
-export interface ServiceTypeListState {
-  serviceTypes: ServiceTypeModel[];
+export interface ServiceTypeListState extends EntityState<ServiceTypeModel> {
   loading: boolean;
 }
 
-export const initialState: ServiceTypeListState = {
-  serviceTypes: [],
+export const adapter: EntityAdapter<ServiceTypeModel> = createEntityAdapter<ServiceTypeModel>({});
+
+export const initialState: ServiceTypeListState = adapter.getInitialState({
   loading: false,
-};
+});
 
 
 const serviceTypeListReducer = createReducer(
@@ -30,11 +31,9 @@ const serviceTypeListReducer = createReducer(
     loading: true,
   })),
 
-  on(getServiceTypeListSuccess, (state, {serviceTypes}) => ({
-    ...state,
-    loading: false,
-    serviceTypes,
-  })),
+  on(getServiceTypeListSuccess, (state, {serviceTypes}) => {
+    return adapter.addAll(serviceTypes, state);
+  }),
 
   on(getServiceTypeListFailed, (state, {error}) => ({
     ...state,
@@ -42,25 +41,22 @@ const serviceTypeListReducer = createReducer(
     loading: false,
   })),
 
-  on(addServiceTypeSuccess, (state, {serviceType}) => ({
-    ...state,
-    serviceTypes: addOne(state.serviceTypes, serviceType),
-  })),
+  on(addServiceTypeSuccess, (state, {serviceType}) => {
+    return adapter.addOne(serviceType, state);
+  }),
 
-  on(updateServiceTypeSuccess, (state, {serviceType}) => ({
-    ...state,
-    serviceTypes: updateOne(state.serviceTypes, serviceType)
-  })),
+  on(updateServiceTypeSuccess, (state, {serviceType}) => {
+    return adapter.updateOne(serviceType, state);
+  }),
 
   on(updateServiceTypeFailed, (state, {error}) => ({
     ...state,
     error,
   })),
 
-  on(deleteServiceTypeSuccess, (state, {id}) => ({
-    ...state,
-    serviceTypes: deleteOne(state.serviceTypes, id),
-  }))
+  on(deleteServiceTypeSuccess, (state, {id}) => {
+    return adapter.removeOne(id, state);
+  })
 );
 
 export function reducer(state: ServiceTypeListState | undefined, action: Action) {
