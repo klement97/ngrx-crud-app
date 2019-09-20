@@ -32,7 +32,7 @@ const serviceTypeListReducer = createReducer(
   })),
 
   on(getServiceTypeListSuccess, (state, {serviceTypes}) => {
-    return adapter.addAll(serviceTypes, state);
+    return adapter.addAll(serviceTypes, {...state, loading: false});
   }),
 
   on(getServiceTypeListFailed, (state, {error}) => ({
