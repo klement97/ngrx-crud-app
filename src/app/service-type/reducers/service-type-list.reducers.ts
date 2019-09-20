@@ -4,11 +4,11 @@ import {
   deleteServiceTypeSuccess,
   getServiceTypeList,
   getServiceTypeListFailed,
-  getServiceTypeListSuccess, updateServiceTypeFailed,
+  getServiceTypeListSuccess,
+  updateServiceTypeFailed,
   updateServiceTypeSuccess
 } from 'src/app/service-type/actions/service-type-list.actions';
 import {ServiceTypeModel} from 'src/app/service-type/models/service-type.model';
-import {addOne, deleteOne, updateOne} from 'src/environments/const';
 import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
 
 export const serviceTypeListFetureKey = 'service-type-list';
@@ -46,7 +46,7 @@ const serviceTypeListReducer = createReducer(
   }),
 
   on(updateServiceTypeSuccess, (state, {serviceType}) => {
-    return adapter.updateOne(serviceType, state);
+    return adapter.upsertOne(serviceType, state);
   }),
 
   on(updateServiceTypeFailed, (state, {error}) => ({

@@ -31,15 +31,10 @@ export class ServiceTypeListComponent implements OnInit {
     this.serviceTypes$ = this.store.select(serviceTypeList);
 
     this.serviceTypes$.subscribe(data => {
-      if (data === {}) {
-        this.loading = true;
-      } else {
         this.loading = false;
-        // this.dataSource = new MatTableDataSource<ServiceTypeModel>(data);
-        // this.table.renderRows();
-        // this.dataSource.sort = this.sort;
         console.log(data);
-      }
+      this.dataSource = new MatTableDataSource<ServiceTypeModel>(data);
+      this.dataSource.sort = this.sort;
     });
   }
 
